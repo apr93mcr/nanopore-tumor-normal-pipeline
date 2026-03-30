@@ -3,7 +3,7 @@ import os
 import glob
 
 #configfile: "config_files/config.yaml"
-
+HELPER_SCRIPTS_DIR = config["helper_scripts_dir"]
 DATASET1=config["dataset1"]
 DATASET2=config["dataset2"]
 
@@ -176,7 +176,7 @@ rule sequenza_bam2seqz:
         """
         touch BAMs/*.bam.bai
         sequenza-utils bam2seqz -n {params.normal} -t {input.tumor} -gc /mnt/storage2/sequencing/software/WES/genome_gc50.wig.gz -F  /home/alejandro/hg19/hg19.fa -C chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr21 chr22 chrX --output Seqz_files/{barcode}.seqz.gz  --parallel {threads} -T tabix > /dev/null
-        /mnt/storage1/malibu/Share/Alejandro/FF_vs_FFPE_pilot_study/Nanopore_analysis/Scripts/bam2seqz.sh {barcode} {output}
+        {HELPER_SCRIPTS_DIR}/bam2seqz.sh {barcode} {output}
         """
 
 rule hrd:
@@ -194,7 +194,7 @@ rule hrd:
         10
     shell:
         """
-        Rscript /mnt/storage2/sequencing/software/WES/script_HRD.R {input.seqz}
+	Rscript {HELPER_SCRIPTS_DIR}/script_HRD.R {input.seqz}
         """
 
 rule hrd_alternative_solutions:
@@ -211,7 +211,7 @@ rule hrd_alternative_solutions:
      shell:
         """
         echo "LOH TAI LST HRDsum ploidy cellularity SLPP name" > {output}
-        Rscript /mnt/storage2/sequencing/software/WES/write_seg_to_all_solutions.R {input.seqz} | awk '{{$1=$1;print}}' | grep -v character | grep -v HRD-sum >> {output}
+        Rscript {HELPER_SCRIPTS_DIR}/write_seg_to_all_solutions.R {input.seqz} | awk '{{$1=$1;print}}' | grep -v character | grep -v HRD-sum >> {output}
         """
 
 rule heatmap_data:
@@ -227,7 +227,7 @@ rule heatmap_data:
          4
     shell:
         """
-        Rscript /mnt/storage2/sequencing/software/WES/cp_heatmap.R {input.seqz} {output.lpp} | grep -v "HRD-sum" | sed 's/\s\+/ /g' > {output.hrd}
+        Rscript {HELPER_SCRIPTS_DIR}/cp_heatmap.R {input.seqz} {output.lpp} | grep -v "HRD-sum" | sed 's/\s\+/ /g' > {output.hrd}
         """
 
 rule heatmap_plot:
@@ -241,7 +241,7 @@ rule heatmap_plot:
         pdf=out_dir + f"/Results/{barcode}_alternative_solutions/{barcode}_cp_heatmap.pdf",
     shell:
         """
-        python /mnt/storage2/sequencing/software/WES/plot_cp_hrd.py {input.alt_sol} {input.lpp} {input.hrd} {output.pdf}
+        python {HELPER_SCRIPTS_DIR}/plot_cp_hrd.py {input.alt_sol} {input.lpp} {input.hrd} {output.pdf}
         """
 
 

@@ -1,5 +1,6 @@
 dataset1: /path/to/fastq_pass_run1
 dataset2: /path/to/fastq_pass_run2
 output_dir: /path/to/output_dir
+helper_scripts_dir:  helper_scritps
 barcode: SAMPLE_BARCODE
 bam_normal: /path/to/normal_sample.bam
