@@ -50,7 +50,6 @@ Before publishing, replace hard-coded local paths with configuration variables o
 
 ## Suggested improvements for the public repository
 
-- Move reference genome and helper script paths into `config.yaml`
 - Add `envs/*.yaml` conda environment files
 - Add a workflow diagram
 - Add test data or a minimal dry-run example
