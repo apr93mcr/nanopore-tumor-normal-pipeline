@@ -1,0 +1,43 @@
+# Snakemake
+.snakemake/
+logs/
+
+# Python
+__pycache__/
+*.pyc
+
+# Conda
+.conda/
+
+# Outputs
+results/
+output/
+BAMs/
+Seqz_files/
+CuteSV/
+Sniffles/
+qc_results/
+Results/
+
+# Large bioinformatics files
+*.bam
+*.bai
+*.cram
+*.crai
+*.sam
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.vcf
+*.vcf.gz
+*.tbi
+*.seqz.gz
+*.wig.gz
+*.pdf
+*.html
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
