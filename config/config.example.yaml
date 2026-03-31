@@ -1,6 +1,19 @@
-dataset1: /path/to/fastq_pass_run1
-dataset2: /path/to/fastq_pass_run2
-output_dir: /path/to/output_dir
-helper_scripts_dir:  helper_scritps
-barcode: SAMPLE_BARCODE
-bam_normal: /path/to/normal_sample.bam
+
+sankemake:
+  dataset1: /path/to/fastq_pass_run1
+  dataset2: /path/to/fastq_pass_run2
+  output_dir: /path/to/output_dir
+  helper_scripts_dir:  helper_scritps
+  barcode: SAMPLE_BARCODE
+  bam_normal: /path/to/normal_sample.bam
+
+
+deepsomatic:
+  work_dir: /path/to/project_root
+  output_dir: /path/to/deepsomatic_output
+  normal_dir: /path/to/normal_sample_dir
+  ref_dir: /path/to/reference_dir
+  tumor_sample: R-2016-01650_ONT
+  normal_sample: 160781_CP_ONT_10
+  model_type: WGS
+  num_shards: 30
