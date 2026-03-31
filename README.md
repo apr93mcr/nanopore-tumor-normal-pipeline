@@ -48,9 +48,9 @@ This workflow currently contains environment-specific absolute paths in the orig
 
 Before publishing, replace hard-coded local paths with configuration variables or document them clearly.
 
-## Suggested improvements for the public repository
-
-- Add `envs/*.yaml` conda environment files
+## Future improvements for the public repository
+- Deepsomatic variant calling
+- Gene fusion annotation
 - Add a workflow diagram
 - Add test data or a minimal dry-run example
 - Add license and citation information
